@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список дел</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="todo-app">
+        <h1>Список дел</h1>
+
+        <div class="create-panel">
+            <input type="text" placeholder="Новый элемент списка" value="Новый элемент списка">
+            <div class="actions">
+                <button class="btn-primary">Создать</button>
+                <button class="btn-danger">Очистить всё</button>
+            </div>
+        </div>
+
+
+
+        <!-- Список дел -->
+        <div class="todo-list-container">
+            <ul class="todo-list">
+                <li class="todo-item">
+                    <div class="todo-content">
+                        <span class="todo-icon">📌</span>
+                        <span class="todo-text">Понести кошку</span>
+                    </div>
+                    <button class="delete-btn">✕</button>
+                </li>
+                
+                <li class="todo-item">
+                    <div class="todo-content">
+                        <span class="todo-icon">📌</span>
+                        <span class="todo-text">Полить картошку</span>
+                    </div>
+                    <button class="delete-btn">✕</button>
+                </li>
+                
+                <li class="todo-item">
+                    <div class="todo-content">
+                        <span class="todo-icon">📌</span>
+                        <span class="todo-text">Сложить в лукошко</span>
+                    </div>
+                    <button class="delete-btn">✕</button>
+                </li>
+            </ul>
+
+            <div class="empty-message">
+                Не найдено ни одного дела
+            </div>
+        </div>
+    </div>
+</body>
+</html>
