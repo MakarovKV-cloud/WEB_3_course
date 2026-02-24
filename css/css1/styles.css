@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f0f0f0"/><circle cx="50" cy="50" r="40" fill="none" stroke="%23ddd" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="none" stroke="%23ddd" stroke-width="2"/><line x1="10" y1="10" x2="90" y2="90" stroke="%23ddd" stroke-width="2"/><line x1="90" y1="10" x2="10" y2="90" stroke="%23ddd" stroke-width="2"/></svg>');
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    padding: 20px;
+}
+
+/* Адаптация фона для разных разрешений */
+@media (max-width: 768px) {
+    body {
+        background-size: 80px 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-size: 60px 60px;
+    }
+}
+
+/* Основной контейнер */
+.todo-app {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    flex: 1 0 auto;
+}
+
+/* Составной заголовок */
+.header-with-image {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.header-icon {
+    width: 48px;
+    height: 48px;
+    transition: transform 0.3s ease;
+}
+
+.header-with-image:hover .header-icon {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Декоративный шрифт для заголовка */
+.fancy-title {
+    font-family: "Playfair Display", serif;
+    font-size: 36px;
+    font-weight: 700;
+    font-style: italic;
+    color: #333;
+    background: linear-gradient(45deg, #333, #4CAF50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% { filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3)); }
+    50% { filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.6)); }
+}
+
+/* Анимации для кнопок */
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.shake-animation:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Панель создания */
+.create-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.create-panel input {
+    flex: 1 1 250px;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.create-panel input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.create-panel .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+button {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: default;
+    color: #333;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+/* Изменение кнопок */
+.btn-primary {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-danger {
+    background: #f44336;
+    color: white;
+    border: none;
+}
+
+/* Контейнер списка */
+.todo-list-container {
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: white;
+}
+
+/* Список дел */
+.todo-list {
+    list-style: none;
+}
+
+/* Элемент списка с анимацией появления */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Задержки анимации для элементов */
+.todo-item:nth-child(1) { animation-delay: 0.1s; }
+.todo-item:nth-child(2) { animation-delay: 0.2s; }
+.todo-item:nth-child(3) { animation-delay: 0.3s; }
+.todo-item:nth-child(4) { animation-delay: 0.4s; }
+.todo-item:nth-child(5) { animation-delay: 0.5s; }
+.todo-item:nth-child(6) { animation-delay: 0.6s; }
+.todo-item:nth-child(7) { animation-delay: 0.7s; }
+.todo-item:nth-child(8) { animation-delay: 0.8s; }
+.todo-item:nth-child(9) { animation-delay: 0.9s; }
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+/* Эффект при наведении */
+.todo-item:hover {
+    background-color: #f9f9f9;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.todo-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+/* Обертка для текста и даты */
+.todo-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 300px;
+}
+
+/* Иконка */
+.todo-icon {
+    font-size: 20px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+/* Перекрашивание иконки при наведении */
+.todo-item:hover .todo-icon {
+    color: #4CAF50;
+    transform: scale(1.2) rotate(10deg);
+}
+
+.todo-text {
+    font-size: 16px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+/* Стили для даты */
+.todo-date {
+    font-size: 12px;
+    color: #999;
+    font-weight: 300;
+    transition: color 0.3s ease;
+}
+
+.todo-item:hover .todo-date {
+    color: #666;
+}
+
+/* Кнопка удаления с анимацией */
+.delete-btn {
+    padding: 5px 12px;
+    font-size: 18px;
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    color: #ddd;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.rotate-hover:hover {
+    transform: rotate(90deg);
+    background: #ddd;
+    color: #f44336;
+    border-color: #f44336;
+}
+
+/* Сообщение для пустого списка */
+.empty-message {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    color: #999;
+    background: white;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.todo-list:empty {
+    display: none;
+}
+
+.todo-list:empty + .empty-message {
+    display: block;
+}
+
+/* Футер */
+.site-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 30px;
+    color: darkred;
+    width: 100%;
+    flex-shrink: 0;
+    padding: 20px 0;
+}
+
+.site-footer hr {
+    margin: 20px auto;
+    width: 80%;
+    border: none;
+    border-top: 2px solid darkred;
+}
+
+.site-footer p {
+    font-size: 16px;
+    color: darkred;
+    transition: color 0.3s ease;
+}
+
+.site-footer p:hover {
+    color: #ff6b6b;
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+    .todo-app {
+        padding: 20px;
+    }
+    
+    .create-panel .actions {
+        width: 100%;
+    }
+    
+    .create-panel button {
+        flex: 1;
+    }
+    
+    .filters {
+        justify-content: center;
+    }
+    
+    .header-with-image {
+        justify-content: center;
+    }
+    
+    .fancy-title {
+        font-size: 28px;
+    }
+    
+    .header-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .todo-text-wrapper {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 360px) {
+    .todo-text-wrapper {
+        max-width: 150px;
+    }
+    
+    .fancy-title {
+        font-size: 24px;
+    }
+}
