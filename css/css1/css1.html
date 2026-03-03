@@ -2,132 +2,95 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+      <link rel="icon" href="G:\фото\пепе.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список дел</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="todo-app">
-        <div class="header-with-image">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" 
-                 alt="Checklist icon" 
-                 class="header-icon">
-            <h1 class="fancy-title">Список дел</h1>
-        </div>
+    <div class="app">
+        <div class="todo-container">
+            <!-- Составной заголовок -->
+            <div class="header">
+                <div class="header-icon">✓</div>
+                <h1 class="header-title">Список дел</h1>
+            </div>
 
-        <div class="create-panel">
-            <input type="text" placeholder="Новый элемент списка" value="Новый элемент списка">
-            <div class="actions">
-                <button class="btn-primary pulse-animation">Создать</button>
-                <button class="btn-danger shake-animation">Очистить всё</button>
+            <!-- Панель создания -->
+            <div class="create-panel">
+                <input type="text" class="create-input" placeholder="Новое дело" value="Новое дело">
+                <div class="create-actions">
+                    <button class="btn btn-primary">Создать</button>
+                    <button class="btn btn-danger">Очистить</button>
+                </div>
+            </div>
+
+            <!-- Список дел -->
+            <div class="todo-list-wrapper">
+                <ul class="todo-list">
+                    <li class="todo-item">
+                        <div class="todo-content">
+                            <span class="todo-icon">📌</span>
+                            <div class="todo-text-container">
+                                <span class="todo-text">Покормить котаПокормить котаПокормить котаПокормить котаПокормить котаПокормить котаПокормить кота</span>
+                                <span class="todo-date">Сегодня, 15:30</span>
+                            </div>
+                        </div>
+                        <button class="delete-btn">✕</button>
+                    </li>
+                    <li class="todo-item">
+                        <div class="todo-content">
+                            <span class="todo-icon">📌</span>
+                            <div class="todo-text-container">
+                                <span class="todo-text">Покормить кота</span>
+                                <span class="todo-date">Завтра, 10:00</span>
+                            </div>
+                        </div>
+                        <button class="delete-btn">✕</button>
+                    </li>
+                     <li class="todo-item">
+                        <div class="todo-content">
+                            <span class="todo-icon">📌</span>
+                            <div class="todo-text-container">
+                                <span class="todo-text">Покормить кота</span>
+                                <span class="todo-date">Завтра, 10:00</span>
+                            </div>
+                        </div>
+                        <button class="delete-btn">✕</button>
+                    </li>
+                     <li class="todo-item">
+                        <div class="todo-content">
+                            <span class="todo-icon">📌</span>
+                            <div class="todo-text-container">
+                                <span class="todo-text">Покормить кота</span>
+                                <span class="todo-date">Завтра, 10:00</span>
+                            </div>
+                        </div>
+                        <button class="delete-btn">✕</button>
+                    </li>
+                    <li class="todo-item">
+                        <div class="todo-content">
+                            <span class="todo-icon">📌</span>
+                            <div class="todo-text-container">
+                                <span class="todo-text">Полить цветы</span>
+                                <span class="todo-date">Среда, 18:45</span>
+                            </div>
+                        </div>
+                        <button class="delete-btn">✕</button>
+                    </li>
+                </ul>
+                
+                <div class="empty-message">
+                    Не найдено ни одного дела
+                </div>
             </div>
         </div>
-
-        <!-- Список дел -->
-        <div class="todo-list-container">
-            <ul class="todo-list">
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Понести кошкуПонести кошкуПонести кошкуПонести кошкуПонести кошку</span>
-                            <span class="todo-date">Сегодня, 10:30</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Полить картошку</span>
-                            <span class="todo-date">Сегодня, 15:45</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Сложить в лукошко</span>
-                            <span class="todo-date">Завтра, 09:15</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Сложить в лукошко</span>
-                            <span class="todo-date">Завтра, 14:20</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Сложить в лукошко</span>
-                            <span class="todo-date">Среда, 11:00</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Сложить в лукошко</span>
-                            <span class="todo-date">Четверг, 16:30</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Сложить в лукошко</span>
-                            <span class="todo-date">Пятница, 08:45</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Сложить в лукошко</span>
-                            <span class="todo-date">Понедельник, 13:15</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-                <li class="todo-item slide-in">
-                    <div class="todo-content">
-                        <span class="todo-icon">📌</span>
-                        <div class="todo-text-wrapper">
-                            <span class="todo-text">Сложить в лукошко</span>
-                            <span class="todo-date">Вторник, 10:00</span>
-                        </div>
-                    </div>
-                    <button class="delete-btn rotate-hover">✕</button>
-                </li>
-            </ul>
-
-            <div class="empty-message fade-in">
-                Не найдено ни одного дела
-            </div>
-        </div>
+        
+        <footer class="footer">
+            <hr>
+            <p>Copyright ©</p>
+        </footer>
     </div>
-    <footer class="site-footer">
-        <hr>
-        <p class="text_end">Copyright ©</p>
-    </footer>
 </body>
 </html>

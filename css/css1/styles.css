@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -7,44 +5,34 @@
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="20" fill="none" stroke="%23e0e0e0" stroke-width="1"/><circle cx="30" cy="30" r="10" fill="none" stroke="%23e0e0e0" stroke-width="1"/><line x1="10" y1="10" x2="50" y2="50" stroke="%23e0e0e0" stroke-width="1"/><line x1="50" y1="10" x2="10" y2="50" stroke="%23e0e0e0" stroke-width="1"/></svg>');
+    background-size: 60px 60px;
     display: flex;
     flex-direction: column;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f0f0f0"/><circle cx="50" cy="50" r="40" fill="none" stroke="%23ddd" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="none" stroke="%23ddd" stroke-width="2"/><line x1="10" y1="10" x2="90" y2="90" stroke="%23ddd" stroke-width="2"/><line x1="90" y1="10" x2="10" y2="90" stroke="%23ddd" stroke-width="2"/></svg>');
-    background-size: 100px 100px;
-    background-repeat: repeat;
-    background-attachment: fixed;
+}
+
+.app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
 }
 
-/* Адаптация фона для разных разрешений */
-@media (max-width: 768px) {
-    body {
-        background-size: 80px 80px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        background-size: 60px 60px;
-    }
-}
-
-/* Основной контейнер */
-.todo-app {
+.todo-container {
     width: 100%;
     max-width: 600px;
-    background: rgba(255, 255, 255, 0.95);
+    background: white;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    margin: 0 auto;
-    flex: 1 0 auto;
 }
 
 /* Составной заголовок */
-.header-with-image {
+.header {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -55,184 +43,145 @@ body {
 .header-icon {
     width: 48px;
     height: 48px;
-    transition: transform 0.3s ease;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform 0.3s;
 }
 
-.header-with-image:hover .header-icon {
+.header:hover .header-icon {
     transform: rotate(15deg) scale(1.1);
 }
 
-/* Декоративный шрифт для заголовка */
-.fancy-title {
-    font-family: "Playfair Display", serif;
+.header-title {
+    font-family: 'Playfair Display', serif;
     font-size: 36px;
-    font-weight: 700;
     font-style: italic;
-    color: #333;
-    background: linear-gradient(45deg, #333, #4CAF50);
+    background: linear-gradient(135deg, #333, #4CAF50);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: titleGlow 3s ease-in-out infinite;
-}
-
-@keyframes titleGlow {
-    0%, 100% { filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3)); }
-    50% { filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.6)); }
-}
-
-/* Анимации для кнопок */
-.pulse-animation {
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-.shake-animation:hover {
-    animation: shake 0.5s ease-in-out;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
 }
 
 /* Панель создания */
 .create-panel {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 25px;
+    flex-wrap: wrap;
 }
 
-.create-panel input {
+.create-input {
     flex: 1 1 250px;
     padding: 12px 15px;
     border: 2px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
-    transition: all 0.3s ease;
+    font-family: inherit;
+    transition: border-color 0.3s;
 }
 
-.create-panel input:focus {
+.create-input:focus {
     outline: none;
     border-color: #4CAF50;
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
 }
 
-.create-panel .actions {
+.create-actions {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
-button {
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    background: white;
+.btn {
+    padding: 12px 24px;
+    border: none;
     border-radius: 8px;
     font-size: 14px;
-    cursor: default;
-    color: #333;
-    white-space: nowrap;
-    transition: all 0.3s ease;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-/* Изменение кнопок */
 .btn-primary {
     background: #4CAF50;
     color: white;
-    border: none;
-    position: relative;
-    overflow: hidden;
 }
 
-.btn-primary::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.5);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.btn-primary:active::after {
-    width: 300px;
-    height: 300px;
+.btn-primary:hover {
+    background: #45a049;
+    transform: scale(1.05);
 }
 
 .btn-danger {
     background: #f44336;
     color: white;
-    border: none;
 }
 
-/* Контейнер списка */
-.todo-list-container {
-    max-height: 350px;
-    overflow-y: auto;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    background: white;
+.btn-danger:hover {
+    background: #d32f2f;
+    transform: scale(1.05);
 }
 
 /* Список дел */
+.todo-list-wrapper {
+    max-height: 300px;
+    overflow-y: auto;  /* вертикальная прокрутка */
+    overflow-x: hidden; /* отключаем горизонтальную прокрутку */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Стилизация ползунка прокрутки */
+.todo-list-wrapper::-webkit-scrollbar {
+    width: 8px; /* ширина вертикального ползунка */
+}
+
+.todo-list-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.todo-list-wrapper::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 4px;
+}
+
+.todo-list-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #45a049;
+}
+
+/* Для Firefox */
+.todo-list-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 #f1f1f1;
+}
+
 .todo-list {
     list-style: none;
 }
 
-/* Элемент списка с анимацией появления */
 .todo-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
     background: white;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s;
 }
-
-.slide-in {
-    animation: slideIn 0.5s ease-out forwards;
-    opacity: 0;
-    transform: translateX(-20px);
-}
-
-@keyframes slideIn {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Задержки анимации для элементов */
-.todo-item:nth-child(1) { animation-delay: 0.1s; }
-.todo-item:nth-child(2) { animation-delay: 0.2s; }
-.todo-item:nth-child(3) { animation-delay: 0.3s; }
-.todo-item:nth-child(4) { animation-delay: 0.4s; }
-.todo-item:nth-child(5) { animation-delay: 0.5s; }
-.todo-item:nth-child(6) { animation-delay: 0.6s; }
-.todo-item:nth-child(7) { animation-delay: 0.7s; }
-.todo-item:nth-child(8) { animation-delay: 0.8s; }
-.todo-item:nth-child(9) { animation-delay: 0.9s; }
 
 .todo-item:last-child {
     border-bottom: none;
 }
 
-/* Эффект при наведении */
 .todo-item:hover {
-    background-color: #f9f9f9;
+    background: #f9f9f9;
     transform: translateX(5px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .todo-content {
@@ -240,27 +189,25 @@ button {
     align-items: center;
     gap: 10px;
     flex: 1;
+    min-width: 0;
 }
 
-/* Обертка для текста и даты */
-.todo-text-wrapper {
+.todo-icon {
+    font-size: 20px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.todo-item:hover .todo-icon {
+    color: #4CAF50;
+    transform: scale(1.2) rotate(5deg);
+}
+
+.todo-text-container {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    max-width: 300px;
-}
-
-/* Иконка */
-.todo-icon {
-    font-size: 20px;
-    color: #666;
-    transition: all 0.3s ease;
-}
-
-/* Перекрашивание иконки при наведении */
-.todo-item:hover .todo-icon {
-    color: #4CAF50;
-    transform: scale(1.2) rotate(10deg);
+    min-width: 0;
+    flex: 1;
 }
 
 .todo-text {
@@ -269,57 +216,43 @@ button {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100%;
 }
 
-/* Стили для даты */
 .todo-date {
     font-size: 12px;
     color: #999;
-    font-weight: 300;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
 .todo-item:hover .todo-date {
-    color: #666;
+    color: #333;
 }
 
-/* Кнопка удаления с анимацией */
+/* Кнопка удаления */
 .delete-btn {
     padding: 5px 12px;
-    font-size: 18px;
     background: transparent;
     border: 1px solid #ddd;
     border-radius: 6px;
     color: #ddd;
-    line-height: 1;
-    transition: all 0.3s ease;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.rotate-hover:hover {
+.delete-btn:hover {
     transform: rotate(90deg);
-    background: #ddd;
-    color: #f44336;
     border-color: #f44336;
+    color: #f44336;
 }
 
-/* Сообщение для пустого списка */
+/* Пустой список */
 .empty-message {
     display: none;
     text-align: center;
     padding: 60px 20px;
-    font-size: 18px;
     color: #999;
     background: white;
-}
-
-.fade-in {
-    animation: fadeIn 1s ease-in;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 .todo-list:empty {
@@ -331,75 +264,71 @@ button {
 }
 
 /* Футер */
-.site-footer {
+.footer {
     margin-top: 40px;
     text-align: center;
-    font-size: 30px;
-    color: darkred;
     width: 100%;
     flex-shrink: 0;
-    padding: 20px 0;
 }
 
-.site-footer hr {
-    margin: 20px auto;
+.footer hr {
     width: 80%;
+    margin: 0 auto 20px;
     border: none;
-    border-top: 2px solid darkred;
+    border-top: 2px solid #f44336;
 }
 
-.site-footer p {
+.footer p {
+    color: #f44336;
     font-size: 16px;
-    color: darkred;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
-.site-footer p:hover {
+.footer p:hover {
     color: #ff6b6b;
 }
 
 /* Адаптивность */
-@media (max-width: 500px) {
-    .todo-app {
+@media (max-width: 768px) {
+    body {
+        background-size: 40px 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .todo-container {
         padding: 20px;
     }
     
-    .create-panel .actions {
-        width: 100%;
-    }
-    
-    .create-panel button {
-        flex: 1;
-    }
-    
-    .filters {
-        justify-content: center;
-    }
-    
-    .header-with-image {
-        justify-content: center;
-    }
-    
-    .fancy-title {
+    .header-title {
         font-size: 28px;
     }
     
     .header-icon {
         width: 36px;
         height: 36px;
-    }
-    
-    .todo-text-wrapper {
-        max-width: 200px;
+        font-size: 22px;
     }
 }
 
-@media (max-width: 360px) {
-    .todo-text-wrapper {
-        max-width: 150px;
+@media (max-width: 480px) {
+    body {
+        background-size: 30px 30px;
     }
     
-    .fancy-title {
+    .create-actions {
+        width: 100%;
+    }
+    
+    .btn {
+        flex: 1;
+    }
+    
+    .header {
+        justify-content: center;
+    }
+    
+    .header-title {
         font-size: 24px;
     }
 }
