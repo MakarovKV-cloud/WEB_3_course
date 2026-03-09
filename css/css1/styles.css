@@ -9,6 +9,10 @@
     --like-color: #4CAF50;
     --accent-color: #f44336;
     --size12: 12px;
+    --border-color: #ddd;
+    --text-primary: #333;
+    --text-secondary: #999;
+    --hover-bg: #f0f0f0;
 }
 
 body {
@@ -29,21 +33,13 @@ body {
     padding: 20px;
 }
 
-.todo-container {
-    width: 100%;
-    max-width: 600px;
-    background: var(--white-color);
-    padding: 30px;
-    border-radius: var(--size12);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
 .header {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 25px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .header-icon {
@@ -73,17 +69,25 @@ body {
     color: transparent;
 }
 
+/* ИСПРАВЛЕНО: Панель создания */
 .create-panel {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 25px;
-    flex-wrap: wrap;
+    width: 100%;
+    max-width: 800px;
+    justify-content: center; /* Центрируем содержимое при переносе */
+    align-items: center;
 }
 
+/* Поле ввода */
 .create-input {
-    flex: 1 1 250px;
+    width: 300px;
+    min-width: 300px;
     padding: var(--size12) 15px;
-    border: 2px solid #ddd;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     font-size: 16px;
     font-family: inherit;
@@ -95,10 +99,12 @@ body {
     border-color: var(--like-color);
 }
 
+/* Контейнер для кнопок */
 .create-actions {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    justify-content: center; 
 }
 
 .btn {
@@ -109,6 +115,7 @@ body {
     font-family: inherit;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -117,7 +124,7 @@ body {
 }
 
 .btn-primary:hover {
-    background: var(--like-color);
+    background: #45a049;
     transform: scale(1.05);
 }
 
@@ -135,14 +142,24 @@ body {
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     scrollbar-width: thin;
     scrollbar-color: var(--like-color) var(--white-color);
+    width: 100%;
+    max-width: 800px;
 }
 
 .todo-list {
     list-style: none;
+}
+
+.todo-list:empty {
+    display: none;
+}
+
+.todo-list:empty + .empty-message {
+    display: block;
 }
 
 .todo-item {
@@ -150,9 +167,9 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: var(--size12) 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
     background: var(--white-color);
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s;
 }
 
 .todo-item:last-child {
@@ -160,8 +177,17 @@ body {
 }
 
 .todo-item:hover {
-    background: #ac9898;
+    background: var(--hover-bg);
     transform: translateX(5px);
+}
+
+.todo-item:hover .todo-icon {
+    color: var(--like-color);
+    transform: scale(1.2) rotate(5deg);
+}
+
+.todo-item:hover .todo-date {
+    color: var(--text-primary);
 }
 
 .todo-content {
@@ -174,12 +200,7 @@ body {
 
 .todo-icon {
     font-size: 20px;
-    transition: transform 0.3s, color 0.3s;
-}
-
-.todo-item:hover .todo-icon {
-    color: var(--like-color);
-    transform: scale(1.2) rotate(5deg);
+    transition: all 0.3s;
 }
 
 .todo-text-container {
@@ -192,7 +213,7 @@ body {
 
 .todo-text {
     font-size: 16px;
-    color: #333;
+    color: var(--text-primary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -200,20 +221,16 @@ body {
 
 .todo-date {
     font-size: var(--size12);
-    color: #999;
+    color: var(--text-secondary);
     transition: color 0.3s;
-}
-
-.todo-item:hover .todo-date {
-    color: #333;
 }
 
 .delete-btn {
     padding: 5px var(--size12);
     background: transparent;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
-    color: #ddd;
+    color: var(--border-color);
     font-size: 18px;
     transition: all 0.3s;
     cursor: pointer;
@@ -229,16 +246,8 @@ body {
     display: none;
     text-align: center;
     padding: 60px 20px;
-    color: #999;
+    color: var(--text-secondary);
     background: var(--white-color);
-}
-
-.todo-list:empty {
-    display: none;
-}
-
-.todo-list:empty + .empty-message {
-    display: block;
 }
 
 .footer {
@@ -265,6 +274,7 @@ body {
     color: #ff6b6b;
 }
 
+/* Фон */
 @media (max-width: 768px) {
     body {
         background-size: 40px 40px;
@@ -272,10 +282,6 @@ body {
 }
 
 @media (max-width: 600px) {
-    .todo-container {
-        padding: 20px;
-    }
-    
     .header-title {
         font-size: 28px;
     }
@@ -292,19 +298,36 @@ body {
         background-size: 30px 30px;
     }
     
+    .header-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 650px) {
+    .create-panel {
+        flex-direction: column; 
+        align-items: center; 
+        gap: 15px; 
+    }
+    
+    .create-input {
+        margin-bottom: 0; 
+    }
+    
+    .create-actions {
+        width: auto; 
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
     .create-actions {
         width: 100%;
+        flex-direction: column; 
+        gap: 10px;
     }
     
     .btn {
-        flex: 1;
-    }
-    
-    .header {
-        justify-content: center;
-    }
-    
-    .header-title {
-        font-size: 24px;
+        width: 100%;
     }
 }
