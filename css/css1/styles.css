@@ -85,8 +85,8 @@ body {
 
 /* Поле ввода */
 .create-input {
-    width: 300px;
-    min-width: 300px;
+    width: 500px;
+    min-width: 500px;
     padding: var(--size12) 15px;
     border: 2px solid var(--border-color);
     border-radius: 8px;
