@@ -79,7 +79,7 @@ body {
     margin-bottom: 25px;
     width: 100%;
     max-width: 800px;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
 
@@ -93,6 +93,7 @@ body {
     font-size: 16px;
     font-family: inherit;
     transition: border-color 0.3s;
+    outline: none;
 }
 
 .create-input:focus {
@@ -105,7 +106,7 @@ body {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .btn {
@@ -117,6 +118,13 @@ body {
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
     white-space: nowrap;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.btn:focus {
+    outline: none;
 }
 
 .btn-primary {
@@ -139,6 +147,7 @@ body {
     transform: scale(1.05);
 }
 
+/* Список дел */
 .todo-list-wrapper {
     max-height: 600px;
     overflow-y: auto;
@@ -149,6 +158,22 @@ body {
     scrollbar-color: var(--like-color) var(--white-color);
     width: 100%;
     max-width: 800px;
+    background: white;
+}
+
+.todo-list-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.todo-list-wrapper::-webkit-scrollbar-track {
+    background: var(--white-color);
+    border-radius: 8px;
+}
+
+.todo-list-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--like-color);
+    border-radius: 20px;
+    border: 2px solid var(--white-color);
 }
 
 .todo-list {
@@ -169,14 +194,8 @@ body {
     justify-content: space-between;
     padding: var(--size12) 15px;
     border-bottom: 1px solid var(--border-color);
-
-
     background: var(--white-color);
-
     transition: all 0.3s;
-}
-.todo-item:has(input[type="checkbox"]:checked) {
-    background: #7c7373; 
 }
 
 .todo-item:last-child {
@@ -188,6 +207,10 @@ body {
     transform: translateX(5px);
 }
 
+.todo-item:hover .todo-icon {
+    color: var(--like-color);
+    transform: scale(1.2) rotate(5deg);
+}
 
 .todo-item:hover .todo-date {
     color: var(--text-primary);
@@ -201,6 +224,10 @@ body {
     min-width: 0;
 }
 
+.todo-icon {
+    font-size: 20px;
+    transition: all 0.3s;
+}
 
 .todo-text-container {
     display: flex;
@@ -235,6 +262,13 @@ body {
     cursor: pointer;
     flex-shrink: 0;
     margin-left: 10px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.delete-btn:focus {
+    outline: none;
 }
 
 .delete-btn:hover {
@@ -276,7 +310,7 @@ body {
     color: #ff6b6b;
 }
 
-/* Фон */
+/* Медиа-запросы */
 @media (max-width: 768px) {
     body {
         background-size: 40px 40px;
@@ -295,6 +329,24 @@ body {
     }
 }
 
+@media (max-width: 650px) {
+    .create-panel {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .create-input {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .create-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 480px) {
     body {
         background-size: 30px 30px;
@@ -304,6 +356,15 @@ body {
         font-size: 24px;
     }
     
+    .create-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
     .footer {
         margin-top: 15px;
         padding: 0 15px 15px;
@@ -311,34 +372,5 @@ body {
     
     .footer hr {
         width: 90%;
-    }
-}
-
-@media (max-width: 650px) {
-    .create-panel {
-        flex-direction: column; 
-        align-items: center; 
-        gap: 15px; 
-    }
-    
-    .create-input {
-        margin-bottom: 0; 
-    }
-    
-    .create-actions {
-        width: auto; 
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .create-actions {
-        width: 100%;
-        flex-direction: column; 
-        gap: 10px;
-    }
-    
-    .btn {
-        width: 100%;
     }
 }
