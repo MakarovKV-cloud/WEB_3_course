@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>TravelWorld | Путешествия мечты</title>
+    <!-- Подключение отдельного CSS файла -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts для более современного вида -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (Free) для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- ==================== ШАПКА / НАВИГАЦИЯ ==================== -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>TravelWorld</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#about">О нас</a>
+                <a href="#offers">Предложения</a>
+                <a href="#directions">Направления</a>
+                <a href="#tours">Туры</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================== блок с фоновой картинкой ==================== -->
+        <section class="hero" id="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1>Откройте мир с TravelWorld</h1>
+                <p class="hero-subtitle">Путешествия, которые вы никогда не забудете</p>
+                <a href="#offers" class="btn btn-primary btn-animate">Выбрать тур <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- ==================== О НАС ==================== -->
+        <section class="about" id="about">
+            <div class="container about-grid">
+                <div class="about-text">
+                    <span class="section-badge">Кто мы</span>
+                    <h2>О нашем агентстве</h2>
+                    <h3>Мы создаем незабываемые впечатления</h3>
+                    <p>TravelWorld — это команда профессиональных путешественников, которая уже более 15 лет помогает людям открывать для себя новые страны и культуры. Мы тщательно отбираем каждый тур и направление, чтобы обеспечить вам максимальный комфорт и безопасность во время путешествия.</p>
+                    <p>Наша философия — индивидуальный подход к каждому клиенту. Мы не просто продаем туры, мы создаем уникальные маршруты, которые соответствуют вашим интересам, бюджету и предпочтениям.</p>
+                    <a href="#contacts" class="btn btn-outline btn-animate">Связаться с нами <i class="fas fa-envelope"></i></a>
+                </div>
+                <div class="about-image">
+                    <img src="coloss.jfif" alt="Наша команда" class="about-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ЛУЧШИЕ ПРЕДЛОЖЕНИЯ ==================== -->
+        <section class="offers" id="offers">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Акции</span>
+                    <h2>Наши лучшие предложения</h2>
+                </div>
+                <div class="offers-cards">
+                    <!-- Карточка Эдинбурга -->
+                    <div class="offer-card card-hover">
+                        <div class="offer-image">
+                            <img src="Edinburg.jfif" alt="Эдинбург, Шотландия">
+                        </div>
+                        <div class="offer-info">
+                            <h3>Эдинбург, Шотландия</h3>
+                            <p>Средневековая архитектура, замки и легенды. Шаг в сторону от традиционных маршрутов.</p>
+                            <div class="offer-price">от $1100</div>
+                            <a href="#contacts" class="btn-small btn-animate">Забронировать <i class="fas fa-ticket-alt"></i></a>
+                        </div>
+                    </div>
+                    <!-- Карточка Будапешта -->
+                    <div class="offer-card card-hover">
+                        <div class="offer-image">
+                            <img src="Budapesht.jfif" alt="Будапешт, Венгрия">
+                        </div>
+                        <div class="offer-info">
+                            <h3>Будапешт, Венгрия</h3>
+                            <p>Мосты, дворцы и термальные купальни в фантастических зданиях. Отдых для души и тела.</p>
+                            <div class="offer-price">от $1200</div>
+                            <a href="#contacts" class="btn-small btn-animate">Забронировать</a>
+                        </div>
+                    </div>
+                    <!-- Карточка Парижа -->
+                    <div class="offer-card card-hover">
+                        <div class="offer-image">
+                            <img src="efil_tower.jfif" alt="Париж, Франция">
+                        </div>
+                        <div class="offer-info">
+                            <h3>Париж, Франция</h3>
+                            <p>Город любви, искусства и изысканной кухни. Эйфелева башня, Лувр и уютные кафе.</p>
+                            <div class="offer-price">от $950</div>
+                            <a href="#contacts" class="btn-small btn-animate">Забронировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ПОПУЛЯРНЫЕ НАПРАВЛЕНИЯ ==================== -->
+        <section class="directions" id="directions">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Куда поехать</span>
+                    <h2>Популярные направления</h2>
+                </div>
+                <div class="directions-grid">
+                    <div class="direction-item card-hover">
+                        <img src="Budapesht.jfif" alt="Будапешт">
+                        <div class="direction-content">
+                            <h3>Будапешт, Венгрия</h3>
+                            <p>Будапешт — это мосты, дворцы и термальные купальни, многие из которых расположены в фантастических красивых зданиях.</p>
+                            <span class="price-tag">от $1200</span>
+                        </div>
+                    </div>
+                    <div class="direction-item card-hover">
+                        <img src="efil_tower.jfif" alt="Париж">
+                        <div class="direction-content">
+                            <h3>Париж, Франция</h3>
+                            <p>Город любви, искусства и изысканной кухни. Эйфелева башня, Лувр и уютные кафе.</p>
+                            <span class="price-tag">от $950</span>
+                        </div>
+                    </div>
+                    <div class="direction-item card-hover">
+                        <img src="New York.jfif" alt="Нью-Йорк">
+                        <div class="direction-content">
+                            <h3>Нью-Йорк, США</h3>
+                            <p>Город, который никогда не спит. Таймс-сквер, Центральный парк и Статуя Свободы.</p>
+                            <span class="price-tag">от $1500</span>
+                        </div>
+                    </div>
+                    <div class="direction-item card-hover">
+                        <img src="RIO.jfif" alt="Рио-де-Жанейро">
+                        <div class="direction-content">
+                            <h3>Рио-де-Жанейро, Бразилия</h3>
+                            <p>Скалистые горы, зелёные холмы и живописные лагуны создают захватывающие панорамы.</p>
+                            <span class="price-tag">от $3200</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== НАШИ ТУРЫ ==================== -->
+        <section class="tours" id="tours">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Путешествия</span>
+                    <h2>Наши туры</h2>
+                </div>
+                <div class="tours-grid">
+                    <div class="tour-card card-hover">
+                        <div class="tour-image">
+                            <img src="Vena.jfif" alt="Гранд тур по Европе">
+                        </div>
+                        <div class="tour-info">
+                            <h3>Гранд тур по Европе</h3>
+                            <p>14-дневный тур по 5 странам: Франция, Германия, Австрия, Италия и Швейцария. Включены все переезды, проживание в отеле 4* и экскурсии с гидами.</p>
+                            <div class="tour-price">$2500</div>
+                            <a href="#contacts" class="btn-book btn-animate">Забронировать <i class="fas fa-check-circle"></i></a>
+                        </div>
+                    </div>
+                    <div class="tour-card card-hover">
+                        <div class="tour-image">
+                            <img src="RIO.jfif" alt="Рио-де-Жанейро">
+                        </div>
+                        <div class="tour-info">
+                            <h3>Рио-де-Жанейро, Бразилия</h3>
+                            <p>Скалистые горы, зелёные холмы и живописные лагуны создают захватывающие панорамы. Карнавальный дух и пляжи Копакабана.</p>
+                            <div class="tour-price">$3200</div>
+                            <a href="#contacts" class="btn-book btn-animate">Забронировать <i class="fas fa-check-circle"></i></a>
+                        </div>
+                    </div>
+                    <div class="tour-card card-hover">
+                        <div class="tour-image">
+                            <img src="Japan.jfif" alt="Япония">
+                        </div>
+                        <div class="tour-info">
+                            <h3>Япония: традиции и современность</h3>
+                            <p>12-дневный тур по Токио, Киото, Осака и Хиросима. Чайные церемонии, самурайские традиции, суши-мастер-классы и высокоскоростные поезда.</p>
+                            <div class="tour-price">$2800</div>
+                            <a href="#contacts" class="btn-book btn-animate">Забронировать <i class="fas fa-check-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ОТЗЫВЫ КЛИЕНТОВ ==================== -->
+        <section class="reviews" id="reviews">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Мнение клиентов</span>
+                    <h2>Отзывы наших клиентов</h2>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card card-hover">
+                        <div class="review-avatar"><i class="fas fa-user-circle"></i></div>
+                        <h4>Мария Иванова</h4>
+                        <p class="review-meta">Тур по Италии, май 2025</p>
+                        <blockquote>“Это было самое потрясающее путешествие в моей жизни! Все организовано на высшем уровне — трансферы, экскурсии, отели. Особенно порадовали скрытые уголки Рима.”</blockquote>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                    <div class="review-card card-hover">
+                        <div class="review-avatar"><i class="fas fa-user-circle"></i></div>
+                        <h4>Алексей Петров</h4>
+                        <p class="review-meta">Отдых на Мальдивах, январь 2025</p>
+                        <blockquote>“Спасибо TravelWorld за идеальную организацию отдыха. Всё прошло без малейших проблем, отель превзошел ожидания, а дайвинг был незабываемым!”</blockquote>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                    <div class="review-card card-hover">
+                        <div class="review-avatar"><i class="fas fa-user-circle"></i></div>
+                        <h4>Елена Смирнова</h4>
+                        <p class="review-meta">Экскурсионный тур по Японии, апрель 2025</p>
+                        <blockquote>“Я давно мечтала о Японии, и TravelWorld сделала мечту реальностью. Программа насыщенная, но без спешки. Особенно запомнилась чайная церемония в Киото.”</blockquote>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FAQ + КОНТАКТЫ ==================== -->
+        <section class="faq" id="faq">
+            <div class="container faq-wrapper">
+                <div class="faq-block">
+                    <h2>Часто задаваемые вопросы</h2>
+                    <div class="faq-item">
+                        <div class="faq-question">Как забронировать тур? <span class="faq-icon">+</span></div>
+                        <div class="faq-answer">Вы можете оставить заявку через форму на сайте, позвонить нам или написать в мессенджеры. Наши менеджеры свяжутся с вами в течение часа.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Какие документы нужны для путешествия? <span class="faq-icon">+</span></div>
+                        <div class="faq-answer">Загранпаспорт, виза (при необходимости), медицинская страховка. Мы помогаем с оформлением визы и подскажем полный список.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Есть ли у вас страховка? <span class="faq-icon">+</span></div>
+                        <div class="faq-answer">Да, все наши туры включают медицинскую страховку. По желанию вы можете оформить расширенную страховку отмены поездки.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Можно ли изменить дату поездки после бронирования? <span class="faq-icon">+</span></div>
+                        <div class="faq-answer">Да, в зависимости от условий отеля и авиакомпании. Мы всегда идем навстречу клиентам и помогаем перенести даты.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Что делать, если тур отменяется? <span class="faq-icon">+</span></div>
+                        <div class="faq-answer">В случае отмены по нашей вине мы вернем полную стоимость или предложим альтернативный тур с комплиментарными услугами.</div>
+                    </div>
+                </div>
+
+                <div class="contacts-block" id="contacts">
+                    <h2>Наши контакты</h2>
+                    <div class="contacts-info">
+                        <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Тверская, д. 10, офис 45</p>
+                        <p><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</p>
+                        <p><i class="fas fa-envelope"></i> info@travelworld.ru</p>
+                        <p><i class="far fa-clock"></i> Пн-Пт: 10:00 - 20:00, Сб-Вс: 11:00 - 18:00</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="contact-buttons">
+                            <a href="#" class="btn-small btn-animate"><i class="fas fa-phone"></i> Телефон</a>
+                            <a href="#" class="btn-small btn-animate"><i class="fas fa-comment"></i> Клиент</a>
+                            <a href="#" class="btn-small btn-animate"><i class="fas fa-building"></i> Аренда</a>
+                            <a href="#" class="btn-small btn-animate"><i class="fas fa-map-pin"></i> Адрес</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-globe-americas"></i> TravelWorld
+            </div>
+            <div class="footer-links">
+                <a href="#about">О нас</a>
+                <a href="#directions">Направления</a>
+                <a href="#tours">Туры</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#contacts">Контакты</a>
+            </div>
+            <div class="footer-copy">
+                © 2025 TravelWorld — путешествия вашей мечты.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
