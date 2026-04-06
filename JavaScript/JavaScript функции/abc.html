@@ -1,0 +1,76 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function reverseNumberLoop(num) {
+            let reversed = 0;
+            let znak = 1;
+            if (num<0) znak = -1;
+            let n = Math.abs(num);
+            while (n > 0) {
+                reversed = reversed * 10 + n % 10;
+                n = Math.floor(n / 10);
+            }
+            return reversed * -1;
+        }
+        console.log(reverseNumberLoop(-123))
+
+        const removeDuplicates = (num = 0) => {
+            const str = Math.abs(num).toString();
+            const unique = [...new Set([...str])].join('');
+            return parseInt(unique) * Math.sign(num);
+        };
+
+        console.log(removeDuplicates(111333456));
+
+        function CountNumer(num, search = 1) {
+            num = String(num);  // ← строка, а не число!
+            let counter = 0;
+            for (let i in num) {  
+                if (num[i] === String(search)) { 
+                    counter += 1;
+                }
+            }
+            return counter;
+        }
+        console.log(CountNumer(1234112));
+
+        function TheLongest(num){
+            let counter = 0;
+            let buf = 1;
+            num = num.toString();
+            for (let i = 0;i<num.length-2; i++){
+                if (num[i] === num [i+1]) buf += 1;
+                else{
+                    if (buf>counter) counter = buf;
+                    buf = 1;
+                }
+            }
+            return counter;
+        }
+        console.log(TheLongest(1000111101100));
+
+        const firstUniqueChar = (str = '') => {
+            const [...chars] = str;
+            
+            const charCount = chars.reduce((count, char) => {
+                count[char] = (count[char] || 0) + 1;
+                return count;
+            }, {});
+            
+            const [firstUnique] = chars.find(char => charCount[char] === 1) || [];
+            return firstUnique || null;
+        };
+        console.log(firstUniqueChar("sdsdfsgdgsgsdg"));
+
+        const uniqueChars = (str = '') => {
+            const [...chars] = str;
+            return [...new Set(chars)].join('');
+        };
+
+        console.log(uniqueChars("12trdfdswmadasdasd"))
+    </script>
+</head>
+<body>
+</body>
+</html>
