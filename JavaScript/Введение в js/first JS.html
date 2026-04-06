@@ -1,0 +1,70 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script src="script.js"></script>
+    <script>
+        let a1 = Number(prompt("Первое число?", 1));
+        let b1 = Number(prompt("Второе число?", 2));
+        alert(a1 + b1); // 12
+    </script>
+</head>
+<body>
+    <script>
+        let a2 = 2;
+        while (a2<= 10){
+            console.log(a2);
+            a2 += 2;
+        }
+        console.log("---------");
+    </script>
+    <script>
+        let i = 0;
+        while (i<3){
+            alert(`number ${i}!`);
+            i++;
+        }
+    </script>
+    <script>
+        while(true){
+            let a5 = Number(prompt("Введите число больше 100"));
+            if (a5<=100) alert(`${a5} не больше 100`);
+            else break;
+        }
+    </script>
+    <script>
+        let start = Number(prompt("Введите начало интервала", 2));
+        let end = Number(prompt("Введите конец интервала"));
+
+        if (start < 2 || end < 2) {
+            console.log("Числа должны быть положительными и не меньше 2");
+        } 
+        else if (end <= start) {
+            console.log("Конец диапазона должен быть больше начала");
+        } 
+        else {
+            console.log(`Простые числа в интервале от ${start} до ${end}:`);
+            
+            for (let num = start; num <= end; num++) {
+                let isPrime = true;       
+                if (num === 2) {
+                    isPrime = true;
+                } 
+                else if (num % 2 === 0) {
+                    isPrime = false;
+                } 
+                else {
+                    for (let i = 3; i <= Math.sqrt(num); i += 2) {
+                        if (num % i === 0) {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+                }
+                
+                if (isPrime) {
+                    console.log(num);
+                }
+            }
+        }   
+    </script>
+</body>
