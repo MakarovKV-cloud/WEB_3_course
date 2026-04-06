@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>TravelWorld | Путешествия мечты</title>
-    <!-- Подключение отдельного CSS файла -->
+    <title>TravelWorld | Путешествия мечты — интерактивная карта и карусель</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts для более современного вида -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (Free) для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -29,20 +26,37 @@
                 <a href="#faq">FAQ</a>
                 <a href="#contacts">Контакты</a>
             </nav>
-            <div class="mobile-toggle" id="mobileToggle">
+            <div class="mobile-toggle">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- ==================== блок с фоновой картинкой ==================== -->
-        <section class="hero" id="hero">
+        <!-- ==================== ГЕРОЙ С ФОНОВОЙ КАРТИНКОЙ ==================== -->
+        <section class="hero">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
                 <h1>Откройте мир с TravelWorld</h1>
                 <p class="hero-subtitle">Путешествия, которые вы никогда не забудете</p>
                 <a href="#offers" class="btn btn-primary btn-animate">Выбрать тур <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- ==================== КАРУСЕЛЬ С ФОТОГРАФИЯМИ ==================== -->
+        <section class="photo-carousel-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge"><i class="fas fa-images"></i> Фотогалерея путешествий</span>
+                    <h2>Вдохновляющие кадры</h2>
+                </div>
+                <div class="carousel-gallery">
+                    <div class="carousel-images">
+                        <img class="carousel-img" src="Budapesht.png" alt="Горный пейзаж">
+                        <img class="carousel-img" src="coloss.png" alt="Пляж и океан">
+                        <img class="carousel-img" src="Japan.png" alt="Закат на море">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -58,7 +72,7 @@
                     <a href="#contacts" class="btn btn-outline btn-animate">Связаться с нами <i class="fas fa-envelope"></i></a>
                 </div>
                 <div class="about-image">
-                    <img src="coloss.jfif" alt="Наша команда" class="about-img">
+                    <img src="coloss.png" alt="Наша команда" class="about-img">
                 </div>
             </div>
         </section>
@@ -71,10 +85,9 @@
                     <h2>Наши лучшие предложения</h2>
                 </div>
                 <div class="offers-cards">
-                    <!-- Карточка Эдинбурга -->
                     <div class="offer-card card-hover">
                         <div class="offer-image">
-                            <img src="Edinburg.jfif" alt="Эдинбург, Шотландия">
+                            <img src="Edinburg.png" alt="Эдинбург, Шотландия">
                         </div>
                         <div class="offer-info">
                             <h3>Эдинбург, Шотландия</h3>
@@ -83,10 +96,9 @@
                             <a href="#contacts" class="btn-small btn-animate">Забронировать <i class="fas fa-ticket-alt"></i></a>
                         </div>
                     </div>
-                    <!-- Карточка Будапешта -->
                     <div class="offer-card card-hover">
                         <div class="offer-image">
-                            <img src="Budapesht.jfif" alt="Будапешт, Венгрия">
+                            <img src="Budapesht.png" alt="Будапешт, Венгрия">
                         </div>
                         <div class="offer-info">
                             <h3>Будапешт, Венгрия</h3>
@@ -95,10 +107,9 @@
                             <a href="#contacts" class="btn-small btn-animate">Забронировать</a>
                         </div>
                     </div>
-                    <!-- Карточка Парижа -->
                     <div class="offer-card card-hover">
                         <div class="offer-image">
-                            <img src="efil_tower.jfif" alt="Париж, Франция">
+                            <img src="efil_tower.png" alt="Париж, Франция">
                         </div>
                         <div class="offer-info">
                             <h3>Париж, Франция</h3>
@@ -120,7 +131,7 @@
                 </div>
                 <div class="directions-grid">
                     <div class="direction-item card-hover">
-                        <img src="Budapesht.jfif" alt="Будапешт">
+                        <img src="Budapesht.png" alt="Будапешт">
                         <div class="direction-content">
                             <h3>Будапешт, Венгрия</h3>
                             <p>Будапешт — это мосты, дворцы и термальные купальни, многие из которых расположены в фантастических красивых зданиях.</p>
@@ -128,7 +139,7 @@
                         </div>
                     </div>
                     <div class="direction-item card-hover">
-                        <img src="efil_tower.jfif" alt="Париж">
+                        <img src="efil_tower.png" alt="Париж">
                         <div class="direction-content">
                             <h3>Париж, Франция</h3>
                             <p>Город любви, искусства и изысканной кухни. Эйфелева башня, Лувр и уютные кафе.</p>
@@ -136,7 +147,7 @@
                         </div>
                     </div>
                     <div class="direction-item card-hover">
-                        <img src="New York.jfif" alt="Нью-Йорк">
+                        <img src="New York.png" alt="Нью-Йорк">
                         <div class="direction-content">
                             <h3>Нью-Йорк, США</h3>
                             <p>Город, который никогда не спит. Таймс-сквер, Центральный парк и Статуя Свободы.</p>
@@ -144,7 +155,7 @@
                         </div>
                     </div>
                     <div class="direction-item card-hover">
-                        <img src="RIO.jfif" alt="Рио-де-Жанейро">
+                        <img src="RIO.png" alt="Рио-де-Жанейро">
                         <div class="direction-content">
                             <h3>Рио-де-Жанейро, Бразилия</h3>
                             <p>Скалистые горы, зелёные холмы и живописные лагуны создают захватывающие панорамы.</p>
@@ -165,7 +176,7 @@
                 <div class="tours-grid">
                     <div class="tour-card card-hover">
                         <div class="tour-image">
-                            <img src="Vena.jfif" alt="Гранд тур по Европе">
+                            <img src="Vena.png" alt="Гранд тур по Европе">
                         </div>
                         <div class="tour-info">
                             <h3>Гранд тур по Европе</h3>
@@ -176,7 +187,7 @@
                     </div>
                     <div class="tour-card card-hover">
                         <div class="tour-image">
-                            <img src="RIO.jfif" alt="Рио-де-Жанейро">
+                            <img src="RIO.png" alt="Рио-де-Жанейро">
                         </div>
                         <div class="tour-info">
                             <h3>Рио-де-Жанейро, Бразилия</h3>
@@ -187,7 +198,7 @@
                     </div>
                     <div class="tour-card card-hover">
                         <div class="tour-image">
-                            <img src="Japan.jfif" alt="Япония">
+                            <img src="Japan.png" alt="Япония">
                         </div>
                         <div class="tour-info">
                             <h3>Япония: традиции и современность</h3>
@@ -233,6 +244,12 @@
             </div>
         </section>
 
+        <!-- ==================== ПОЛНОЭКРАННАЯ SVG КАРТА ==================== -->
+    <div class="fullscreen-svg-container">
+        <div class="fullscreen-svg-wrapper">
+            <img src="world.svg" alt="Карта мира TravelWorld" class="fullscreen-svg">
+        </div>
+    </div>
         <!-- ==================== FAQ + КОНТАКТЫ ==================== -->
         <section class="faq" id="faq">
             <div class="container faq-wrapper">
