@@ -1,0 +1,115 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        let arr = [1,2,3,4,5,6];
+        arr.sort((a, b) => a - b);
+        let res = arr[arr.length-1] - arr[0];
+        console.log(`Максимальная разница: ${res}`);
+    </script>
+
+    <script>
+        function removeDuplicates(arr) {
+        let result = [];
+        let seen = {};
+        
+        arr.forEach(item => {
+            if (!seen[item]) {
+                seen[item] = true;
+                result.push(item);
+            }
+        });
+        
+        return result;
+        }
+
+        arr = [1,1,2,2,3,3,4,4,5,5];
+        console.log(removeDuplicates(arr));
+    </script>
+
+    <script>
+        arr = [
+        {id: 1, idDone: true}, 
+        {id: 2, idDone: false},
+        {id: 3, idDone: true}
+        ];
+        
+        console.log(arr.filter(item => item.idDone === true))
+    </script>
+
+    <script>
+        function bigger(arr, stolp){
+            return arr.filter(item => item > stolp);
+        }
+
+        arr = [0,1,2,3,4,5,6,7,8,9,10];
+        let stolp = 5;
+        
+        console.log(bigger(arr, stolp));
+    </script>
+
+    <script>
+        function flatten(arr){
+            return arr.flat(Infinity);
+        }
+
+        arr = [1, 4, [34, 1, 20], [6, [6, 12, 8], 6]];
+        console.log(flatten(arr));
+    </script>
+
+    <script>
+        function countZeroSumPairs(arr) {
+            let count = 0;
+            let available = [...arr];
+            
+            for (let i = 0; i < available.length; i++) {
+                for (let j = i + 1; j < available.length; j++) {
+                    if (available[i] + available[j] === 0) {
+                        count++;
+                        available.splice(j, 1);
+                        available.splice(i, 1);
+                        i--;
+                        break;
+                    }
+                }
+            }
+            
+            return count;
+        }
+        let arr1 = [-7, 12, 4, 6, -4, -12, 0];
+        let arr2 = [-1, 2, 4, 7, -4, 1, -2];
+        console.log(countZeroSumPairs(arr1));
+        console.log(countZeroSumPairs(arr2));
+    </script>
+
+    <script>
+        function countZeroSumTriplets(arr) {
+        let count = 0;
+        let n = arr.length;
+        
+        for (let i = 0; i < n - 2; i++) {
+            let seen = new Map();
+            let target = -arr[i];
+            
+            for (let j = i + 1; j < n; j++) {
+                let complement = target - arr[j];
+                
+                if (seen.get(complement) > 0) {
+                    count++;
+                    seen.set(complement, seen.get(complement) - 1);
+                } else {
+                    seen.set(arr[j], (seen.get(arr[j]) || 0) + 1);
+                }
+            }
+        }
+        
+        return count;
+    }
+
+    // Проверка примеров:
+    console.log(countZeroSumTriplets([-7, 12, 4, 6, -4, -12, 0]));  
+    console.log(countZeroSumTriplets([-1, 2, 4, 7, -4, 1, -2])); 
+    console.log(countZeroSumTriplets([-1, 0, 1, 2, -1, -4]));     
+    </script>
+</head>
+<body></body>
