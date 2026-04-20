@@ -11,7 +11,7 @@
                 reversed = reversed * 10 + n % 10;
                 n = Math.floor(n / 10);
             }
-            return reversed * -1;
+            return reversed * znak;
         }
         console.log(reverseNumberLoop(-123))
 
@@ -24,7 +24,7 @@
         console.log(removeDuplicates(111333456));
 
         function CountNumer(num, search = 1) {
-            num = String(num);  // ← строка, а не число!
+            num = String(num);  
             let counter = 0;
             for (let i in num) {  
                 if (num[i] === String(search)) { 
@@ -62,6 +62,18 @@
             return firstUnique || null;
         };
         console.log(firstUniqueChar("sdsdfsgdgsgsdg"));
+
+        function generateRandomStr(len) {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let result = "";
+            for (let i = 0; i < len; i++) {
+                let randomIndex = Math.floor(Math.random() * chars.length);
+                result += chars[randomIndex];
+            }
+            return result;
+        }
+        console.log(generateRandomStr(6));
+
 
         const uniqueChars = (str = '') => {
             const [...chars] = str;
