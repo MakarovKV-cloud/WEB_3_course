@@ -1,4 +1,4 @@
 var UserName = "Джон";
 let admin = UserName;
-alert(admin);
+console.log(admin);
 
