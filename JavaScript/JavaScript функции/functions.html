@@ -4,8 +4,8 @@
     <script>
         function reverseNumberLoop(num) {
             let reversed = 0;
-            let znak = 1;
-            if (num<0) znak = -1;
+            let znak = Math.sign(num);
+            
             let n = Math.abs(num);
             while (n > 0) {
                 reversed = reversed * 10 + n % 10;
