@@ -1,0 +1,190 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // задание 1
+        function counter(n) {
+            let current = n;
+            
+            const intervalId = setInterval(() => {
+                console.log(current);
+                
+                if (current === 0) {
+                    clearInterval(intervalId);
+                }
+                
+                current--;
+            }, 1000);
+        }
+        counter(5);
+
+        function createCounter(n) {
+            let current = n;
+            let intervalId = null;
+            let isRunning = false;
+            
+            function tick() {
+                console.log(current);
+                
+                if (current === 0) {
+                    stop();
+                } else {
+                    current--;
+                }
+        }
+        
+        function start() {
+            if (isRunning || current < 0) {
+                return;
+            }
+            
+            console.log(current);
+            
+            if (current > 0) {
+                intervalId = setInterval(() => {
+                    if (current > 0) {
+                        current--;
+                        console.log(current);
+                        
+                        if (current === 0) {
+                            stop();
+                        }
+                    }
+                }, 1000);
+                isRunning = true;
+            }
+        }
+    
+        function pause() {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+                isRunning = false;
+            }
+        }
+            
+        function stop() {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+            current = n;
+            isRunning = false;
+        }
+        
+        return {
+            start,
+            pause,
+            stop
+        };
+        }
+
+
+        const counter2 = createCounter(10);
+        counter2.start();
+        // задание 1
+    
+    
+
+        //задание 2
+        function delay(N) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, N * 1000);
+        });
+        }
+        delay(2).then(() => console.log('Прошло 2 секунды'));
+
+        function delay(N) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, N * 1000);
+        });
+        }
+
+        async function countdown(N) {
+            for (let i = N; i >= 0; i--) {
+                console.log(i);
+                await delay(1);
+            }
+            console.log('Готово!');
+        }
+
+        countdown(5);
+
+
+        async function getFirstRepoName(username) {
+    try {
+        // Первый запрос - получаем список репозиториев
+        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+        
+        if (!reposResponse.ok) {
+            throw new Error(`Ошибка HTTP: ${reposResponse.status}`);
+        }
+        
+        const repos = await reposResponse.json();
+        
+        if (repos.length === 0) {
+            return `У пользователя ${username} нет репозиториев`;
+        }
+        
+        // Получаем имя первого репозитория
+        const firstRepoName = repos[0].name;
+        
+        // Второй запрос - получаем информацию о первом репозитории (опционально)
+        const repoResponse = await fetch(`https://api.github.com/repos/${username}/${firstRepoName}`);
+        
+        if (!repoResponse.ok) {
+            throw new Error(`Ошибка HTTP при получении репозитория: ${repoResponse.status}`);
+        }
+        
+        const repoData = await repoResponse.json();
+        
+        return {
+            repoName: firstRepoName,
+            fullInfo: repoData
+        };
+        
+        } catch (error) {
+            console.error('Ошибка:', error.message);
+            return null;
+        }
+        }
+        // задание 2
+
+
+
+
+        // задание 3
+        async function getFirstRepoNameSimple(username) {
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos`);
+                
+                if (!response.ok) {
+                    throw new Error(`Пользователь ${username} не найден или ошибка запроса`);
+                }
+                
+                const repos = await response.json();
+                
+                if (repos.length === 0) {
+                    return `У пользователя ${username} нет репозиториев`;
+                }
+                
+                return repos[0].name;
+                
+            } catch (error) {
+                console.error('Ошибка:', error.message);
+                return null;
+            }
+        }
+
+
+        getFirstRepoNameSimple('MakarovKV-cloud').then(name => {
+            console.log('Первый репозиторий:', name);
+        });
+        // задание 3
+
+
+
+
+
+    </script>
+</head>
