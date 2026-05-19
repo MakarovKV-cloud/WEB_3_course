@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>TravelWorld | Путешествия мечты — интерактивная карта и карусель</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>TravelWorld | Путешествия мечты — интерактивная карта мира</title>
+    
+    <!-- Leaflet CSS + JS (OpenStreetMap) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Подключаем внешний CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- ==================== ШАПКА / НАВИГАЦИЯ ==================== -->
+    <!-- ШАПКА -->
     <header class="header">
         <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-globe-americas"></i>
-                <span>TravelWorld</span>
-            </div>
+            <div class="logo"><i class="fas fa-globe-americas"></i> TravelWorld</div>
             <nav class="nav-menu">
                 <a href="#about">О нас</a>
                 <a href="#offers">Предложения</a>
@@ -25,15 +30,14 @@
                 <a href="#reviews">Отзывы</a>
                 <a href="#faq">FAQ</a>
                 <a href="#contacts">Контакты</a>
+                <a href="#mapSection">Карта</a>
             </nav>
-            <div class="mobile-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </header>
 
     <main>
-        <!-- ==================== часть С ФОНОВОЙ КАРТИНКОЙ ==================== -->
+        <!-- Hero -->
         <section class="hero">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
@@ -43,7 +47,34 @@
             </div>
         </section>
 
-        <!-- ==================== КАРУСЕЛЬ С ФОТОГРАФИЯМИ ==================== -->
+        <!-- ========== ИНТЕРАКТИВНАЯ КАРТА МИРА (LEAFLET + OSM + FETCH) ========== -->
+        <section class="map-interactive-section" id="mapSection">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge"><i class="fas fa-map-marked-alt"></i> Живая карта путешествий</span>
+                    <h2>Выберите континент</h2>
+                    <p>Нажмите на кнопку — окружность появится вокруг континента. Координаты загружаются через OpenStreetMap Nominatim API (fetch).</p>
+                </div>
+                <div class="map-container">
+                    <div class="continent-buttons">
+                        <button class="btn-continent" data-continent="asia"><i class="fas fa-map-pin"></i> Азия</button>
+                        <button class="btn-continent" data-continent="america"><i class="fas fa-map-pin"></i> Америка</button>
+                        <button class="btn-continent" data-continent="europe"><i class="fas fa-map-pin"></i> Европа</button>
+                        <button class="btn-continent" data-continent="africa"><i class="fas fa-map-pin"></i> Африка</button>
+                    </div>
+                    <div id="worldMap"></div>
+                    <div class="circle-legend">
+                        <span><i class="legend-dot"></i> Окружность (радиус ~1500 км)</span>
+                        <span><i class="fas fa-cloud-sun"></i> Координаты из API</span>
+                    </div>
+                    <div id="mapStatusMsg" class="map-status">
+                        🌍 Нажмите на континент, чтобы подсветить регион
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Карусель фото -->
         <section class="photo-carousel-section">
             <div class="container">
                 <div class="section-header">
@@ -52,273 +83,176 @@
                 </div>
                 <div class="carousel-gallery">
                     <div class="carousel-images">
-                        <img class="carousel-img" src="Budapesht.png" alt="Горный пейзаж">
-                        <img class="carousel-img" src="coloss.png" alt="Пляж и океан">
-                        <img class="carousel-img" src="Japan.png" alt="Закат на море">
+                        <img class="carousel-img" src="https://picsum.photos/id/104/1200/500" alt="Горный пейзаж">
+                        <img class="carousel-img" src="https://picsum.photos/id/169/1200/500" alt="Пляж и океан">
+                        <img class="carousel-img" src="https://picsum.photos/id/96/1200/500" alt="Закат на море">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== О НАС ==================== -->
+        <!-- О нас -->
         <section class="about" id="about">
             <div class="container about-grid">
                 <div class="about-text">
                     <span class="section-badge">Кто мы</span>
                     <h2>О нашем агентстве</h2>
                     <h3>Мы создаем незабываемые впечатления</h3>
-                    <p>TravelWorld — это команда профессиональных путешественников, которая уже более 15 лет помогает людям открывать для себя новые страны и культуры. Мы тщательно отбираем каждый тур и направление, чтобы обеспечить вам максимальный комфорт и безопасность во время путешествия.</p>
-                    <p>Наша философия — индивидуальный подход к каждому клиенту. Мы не просто продаем туры, мы создаем уникальные маршруты, которые соответствуют вашим интересам, бюджету и предпочтениям.</p>
+                    <p>TravelWorld — команда профессионалов, более 15 лет помогаем открывать мир. Индивидуальные туры и полное сопровождение.</p>
                     <a href="#contacts" class="btn btn-outline btn-animate">Связаться с нами <i class="fas fa-envelope"></i></a>
                 </div>
                 <div class="about-image">
-                    <img src="coloss.png" alt="Наша команда" class="about-img">
+                    <img src="https://picsum.photos/id/15/600/400" alt="Команда" class="about-img">
                 </div>
             </div>
         </section>
 
-        <!-- ==================== ЛУЧШИЕ ПРЕДЛОЖЕНИЯ ==================== -->
+        <!-- Лучшие предложения -->
         <section class="offers" id="offers">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Акции</span>
-                    <h2>Наши лучшие предложения</h2>
-                </div>
+                <div class="section-header"><span class="section-badge">Акции</span><h2>Лучшие предложения</h2></div>
                 <div class="offers-cards">
-                    <div class="offer-card card-hover">
-                        <div class="offer-image">
-                            <img src="Edinburg.png" alt="Эдинбург, Шотландия">
-                        </div>
-                        <div class="offer-info">
-                            <h3>Эдинбург, Шотландия</h3>
-                            <p>Средневековая архитектура, замки и легенды. Шаг в сторону от традиционных маршрутов.</p>
-                            <div class="offer-price">от $1100</div>
-                            <a href="#contacts" class="btn-small btn-animate">Забронировать <i class="fas fa-ticket-alt"></i></a>
-                        </div>
-                    </div>
-                    <div class="offer-card card-hover">
-                        <div class="offer-image">
-                            <img src="Budapesht.png" alt="Будапешт, Венгрия">
-                        </div>
-                        <div class="offer-info">
-                            <h3>Будапешт, Венгрия</h3>
-                            <p>Мосты, дворцы и термальные купальни в фантастических зданиях. Отдых для души и тела.</p>
-                            <div class="offer-price">от $1200</div>
-                            <a href="#contacts" class="btn-small btn-animate">Забронировать</a>
-                        </div>
-                    </div>
-                    <div class="offer-card card-hover">
-                        <div class="offer-image">
-                            <img src="efil_tower.png" alt="Париж, Франция">
-                        </div>
-                        <div class="offer-info">
-                            <h3>Париж, Франция</h3>
-                            <p>Город любви, искусства и изысканной кухни. Эйфелева башня, Лувр и уютные кафе.</p>
-                            <div class="offer-price">от $950</div>
-                            <a href="#contacts" class="btn-small btn-animate">Забронировать</a>
-                        </div>
-                    </div>
+                    <div class="offer-card card-hover"><div class="offer-image"><img src="https://picsum.photos/id/20/300/200" alt="Эдинбург"></div><div class="offer-info"><h3>Эдинбург</h3><p>Средневековье и легенды</p><div class="offer-price">от $1100</div><a href="#contacts" class="btn-small">Забронировать</a></div></div>
+                    <div class="offer-card card-hover"><div class="offer-image"><img src="https://picsum.photos/id/29/300/200" alt="Будапешт"></div><div class="offer-info"><h3>Будапешт</h3><p>Термальные купальни</p><div class="offer-price">от $1200</div><a href="#contacts" class="btn-small">Забронировать</a></div></div>
+                    <div class="offer-card card-hover"><div class="offer-image"><img src="https://picsum.photos/id/96/300/200" alt="Париж"></div><div class="offer-info"><h3>Париж</h3><p>Город любви</p><div class="offer-price">от $950</div><a href="#contacts" class="btn-small">Забронировать</a></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== ПОПУЛЯРНЫЕ НАПРАВЛЕНИЯ ==================== -->
+        <!-- Направления -->
         <section class="directions" id="directions">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Куда поехать</span>
-                    <h2>Популярные направления</h2>
-                </div>
-                <div class="directions-grid">
-                    <div class="direction-item card-hover">
-                        <img src="Budapesht.png" alt="Будапешт">
-                        <div class="direction-content">
-                            <h3>Будапешт, Венгрия</h3>
-                            <p>Будапешт — это мосты, дворцы и термальные купальни, многие из которых расположены в фантастических красивых зданиях.</p>
-                            <span class="price-tag">от $1200</span>
-                        </div>
-                    </div>
-                    <div class="direction-item card-hover">
-                        <img src="efil_tower.png" alt="Париж">
-                        <div class="direction-content">
-                            <h3>Париж, Франция</h3>
-                            <p>Город любви, искусства и изысканной кухни. Эйфелева башня, Лувр и уютные кафе.</p>
-                            <span class="price-tag">от $950</span>
-                        </div>
-                    </div>
-                    <div class="direction-item card-hover">
-                        <img src="New York.png" alt="Нью-Йорк">
-                        <div class="direction-content">
-                            <h3>Нью-Йорк, США</h3>
-                            <p>Город, который никогда не спит. Таймс-сквер, Центральный парк и Статуя Свободы.</p>
-                            <span class="price-tag">от $1500</span>
-                        </div>
-                    </div>
-                    <div class="direction-item card-hover">
-                        <img src="RIO.png" alt="Рио-де-Жанейро">
-                        <div class="direction-content">
-                            <h3>Рио-де-Жанейро, Бразилия</h3>
-                            <p>Скалистые горы, зелёные холмы и живописные лагуны создают захватывающие панорамы.</p>
-                            <span class="price-tag">от $3200</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="container"><div class="section-header"><span class="section-badge">Направления</span><h2>Популярные места</h2></div>
+            <div class="directions-grid">
+                <div class="direction-item card-hover"><img src="https://picsum.photos/id/15/300/200"><div class="direction-content"><h3>Будапешт</h3><p>Дворцы и термы</p><span class="price-tag">от $1200</span></div></div>
+                <div class="direction-item card-hover"><img src="https://picsum.photos/id/30/300/200"><div class="direction-content"><h3>Париж</h3><p>Эйфелева башня</p><span class="price-tag">от $950</span></div></div>
+                <div class="direction-item card-hover"><img src="https://picsum.photos/id/169/300/200"><div class="direction-content"><h3>Нью-Йорк</h3><p>Город контрастов</p><span class="price-tag">от $1500</span></div></div>
+            </div></div>
         </section>
 
-        <!-- ==================== НАШИ ТУРЫ ==================== -->
+        <!-- Туры -->
         <section class="tours" id="tours">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Путешествия</span>
-                    <h2>Наши туры</h2>
-                </div>
-                <div class="tours-grid">
-                    <div class="tour-card card-hover">
-                        <div class="tour-image">
-                            <img src="Vena.png" alt="Гранд тур по Европе">
-                        </div>
-                        <div class="tour-info">
-                            <h3>Гранд тур по Европе</h3>
-                            <p>14-дневный тур по 5 странам: Франция, Германия, Австрия, Италия и Швейцария. Включены все переезды, проживание в отеле 4* и экскурсии с гидами.</p>
-                            <div class="tour-price">$2500</div>
-                            <a href="#contacts" class="btn-book btn-animate">Забронировать <i class="fas fa-check-circle"></i></a>
-                        </div>
-                    </div>
-                    <div class="tour-card card-hover">
-                        <div class="tour-image">
-                            <img src="RIO.png" alt="Рио-де-Жанейро">
-                        </div>
-                        <div class="tour-info">
-                            <h3>Рио-де-Жанейро, Бразилия</h3>
-                            <p>Скалистые горы, зелёные холмы и живописные лагуны создают захватывающие панорамы. Карнавальный дух и пляжи Копакабана.</p>
-                            <div class="tour-price">$3200</div>
-                            <a href="#contacts" class="btn-book btn-animate">Забронировать <i class="fas fa-check-circle"></i></a>
-                        </div>
-                    </div>
-                    <div class="tour-card card-hover">
-                        <div class="tour-image">
-                            <img src="Japan.png" alt="Япония">
-                        </div>
-                        <div class="tour-info">
-                            <h3>Япония: традиции и современность</h3>
-                            <p>12-дневный тур по Токио, Киото, Осака и Хиросима. Чайные церемонии, самурайские традиции, суши-мастер-классы и высокоскоростные поезда.</p>
-                            <div class="tour-price">$2800</div>
-                            <a href="#contacts" class="btn-book btn-animate">Забронировать <i class="fas fa-check-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="container"><div class="section-header"><span class="section-badge">Туры</span><h2>Наши туры</h2></div>
+            <div class="tours-grid">
+                <div class="tour-card card-hover"><div class="tour-image"><img src="https://picsum.photos/id/104/300/200"></div><div class="tour-info"><h3>Гранд тур Европа</h3><p>5 стран за 14 дней</p><div class="tour-price">$2500</div><a href="#contacts" class="btn-small">Забронировать</a></div></div>
+                <div class="tour-card card-hover"><div class="tour-image"><img src="https://picsum.photos/id/169/300/200"></div><div class="tour-info"><h3>Рио-де-Жанейро</h3><p>Карнавал и пляжи</p><div class="tour-price">$3200</div><a href="#contacts" class="btn-small">Забронировать</a></div></div>
+                <div class="tour-card card-hover"><div class="tour-image"><img src="https://picsum.photos/id/96/300/200"></div><div class="tour-info"><h3>Япония</h3><p>Традиции и будущее</p><div class="tour-price">$2800</div><a href="#contacts" class="btn-small">Забронировать</a></div></div>
+            </div></div>
         </section>
 
-        <!-- ==================== ОТЗЫВЫ КЛИЕНТОВ ==================== -->
+        <!-- Отзывы -->
         <section class="reviews" id="reviews">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Мнение клиентов</span>
-                    <h2>Отзывы наших клиентов</h2>
-                </div>
-                <div class="reviews-grid">
-                    <div class="review-card card-hover">
-                        <div class="review-avatar"><i class="fas fa-user-circle"></i></div>
-                        <h4>Мария Иванова</h4>
-                        <p class="review-meta">Тур по Италии, май 2025</p>
-                        <blockquote>“Это было самое потрясающее путешествие в моей жизни! Все организовано на высшем уровне — трансферы, экскурсии, отели. Особенно порадовали скрытые уголки Рима.”</blockquote>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                    <div class="review-card card-hover">
-                        <div class="review-avatar"><i class="fas fa-user-circle"></i></div>
-                        <h4>Алексей Петров</h4>
-                        <p class="review-meta">Отдых на Мальдивах, январь 2025</p>
-                        <blockquote>“Спасибо TravelWorld за идеальную организацию отдыха. Всё прошло без малейших проблем, отель превзошел ожидания, а дайвинг был незабываемым!”</blockquote>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                    <div class="review-card card-hover">
-                        <div class="review-avatar"><i class="fas fa-user-circle"></i></div>
-                        <h4>Елена Смирнова</h4>
-                        <p class="review-meta">Экскурсионный тур по Японии, апрель 2025</p>
-                        <blockquote>“Я давно мечтала о Японии, и TravelWorld сделала мечту реальностью. Программа насыщенная, но без спешки. Особенно запомнилась чайная церемония в Киото.”</blockquote>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                </div>
-            </div>
+            <div class="container"><div class="section-header"><span class="section-badge">Отзывы</span><h2>Клиенты о нас</h2></div>
+            <div class="reviews-grid">
+                <div class="review-card"><div class="review-avatar"><i class="fas fa-user-circle fa-3x"></i></div><h4>Мария</h4><blockquote>Идеально организованный тур в Италию!</blockquote><div class="stars">★★★★★</div></div>
+                <div class="review-card"><div class="review-avatar"><i class="fas fa-user-circle fa-3x"></i></div><h4>Алексей</h4><blockquote>Лучшее путешествие на Мальдивы</blockquote><div class="stars">★★★★★</div></div>
+            </div></div>
         </section>
 
-        <!-- ==================== ПОЛНОЭКРАННАЯ SVG КАРТА ==================== -->
-    <div class="fullscreen-svg-container">
-        <div class="fullscreen-svg-wrapper">
-            <img src="world.svg" alt="Карта мира TravelWorld" class="fullscreen-svg">
-        </div>
-    </div>
-        <!-- ==================== FAQ + КОНТАКТЫ ==================== -->
+        <!-- FAQ + Контакты -->
         <section class="faq" id="faq">
             <div class="container faq-wrapper">
-                <div class="faq-block">
-                    <h2>Часто задаваемые вопросы</h2>
-                    <div class="faq-item">
-                        <div class="faq-question">Как забронировать тур? <span class="faq-icon">+</span></div>
-                        <div class="faq-answer">Вы можете оставить заявку через форму на сайте, позвонить нам или написать в мессенджеры. Наши менеджеры свяжутся с вами в течение часа.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Какие документы нужны для путешествия? <span class="faq-icon">+</span></div>
-                        <div class="faq-answer">Загранпаспорт, виза (при необходимости), медицинская страховка. Мы помогаем с оформлением визы и подскажем полный список.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Есть ли у вас страховка? <span class="faq-icon">+</span></div>
-                        <div class="faq-answer">Да, все наши туры включают медицинскую страховку. По желанию вы можете оформить расширенную страховку отмены поездки.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Можно ли изменить дату поездки после бронирования? <span class="faq-icon">+</span></div>
-                        <div class="faq-answer">Да, в зависимости от условий отеля и авиакомпании. Мы всегда идем навстречу клиентам и помогаем перенести даты.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Что делать, если тур отменяется? <span class="faq-icon">+</span></div>
-                        <div class="faq-answer">В случае отмены по нашей вине мы вернем полную стоимость или предложим альтернативный тур с комплиментарными услугами.</div>
-                    </div>
+                <div class="faq-block"><h2>Часто задаваемые вопросы</h2>
+                    <div class="faq-item"><div class="faq-question">Как забронировать тур? <span class="faq-icon">+</span></div><div class="faq-answer">Оставьте заявку на сайте или позвоните нам — менеджер свяжется в течение часа.</div></div>
+                    <div class="faq-item"><div class="faq-question">Нужна ли виза?<span class="faq-icon">+</span></div><div class="faq-answer">Помогаем с оформлением визы и подготовкой документов.</div></div>
                 </div>
-
-                <div class="contacts-block" id="contacts">
-                    <h2>Наши контакты</h2>
-                    <div class="contacts-info">
-                        <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Тверская, д. 10, офис 45</p>
-                        <p><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</p>
-                        <p><i class="fas fa-envelope"></i> info@travelworld.ru</p>
-                        <p><i class="far fa-clock"></i> Пн-Пт: 10:00 - 20:00, Сб-Вс: 11:00 - 18:00</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-telegram"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                        <div class="contact-buttons">
-                            <a href="#" class="btn-small btn-animate"><i class="fas fa-phone"></i> Телефон</a>
-                            <a href="#" class="btn-small btn-animate"><i class="fas fa-comment"></i> Клиент</a>
-                            <a href="#" class="btn-small btn-animate"><i class="fas fa-building"></i> Аренда</a>
-                            <a href="#" class="btn-small btn-animate"><i class="fas fa-map-pin"></i> Адрес</a>
-                        </div>
-                    </div>
-                </div>
+                <div class="contacts-block" id="contacts"><h2>Контакты</h2><p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Тверская, д. 10</p><p><i class="fas fa-phone-alt"></i> +7 (495) 123-45-67</p><div class="social-links"><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
             </div>
         </section>
     </main>
 
-    <!-- ФУТЕР -->
     <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <i class="fas fa-globe-americas"></i> TravelWorld
-            </div>
-            <div class="footer-links">
-                <a href="#about">О нас</a>
-                <a href="#directions">Направления</a>
-                <a href="#tours">Туры</a>
-                <a href="#reviews">Отзывы</a>
-                <a href="#contacts">Контакты</a>
-            </div>
-            <div class="footer-copy">
-                © 2025 TravelWorld — путешествия вашей мечты.
-            </div>
-        </div>
+        <div class="container footer-content"><div class="footer-logo"><i class="fas fa-globe-americas"></i> TravelWorld</div>
+        <div class="footer-links"><a href="#about">О нас</a><a href="#tours">Туры</a><a href="#contacts">Контакты</a></div>
+        <div class="footer-copy">© 2025 TravelWorld — путешествия вашей мечты.</div></div>
     </footer>
 
+    <script>
+        // ИНИЦИАЛИЗАЦИЯ КАРТЫ (OpenStreetMap)
+        const map = L.map('worldMap').setView([20, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Переменная для хранения текущей окружности
+        let currentCircle = null;
+        const statusDiv = document.getElementById('mapStatusMsg');
+
+        // Функция для добавления окружности
+        function addCircleOnMap(lat, lon, continentName) {
+            if (currentCircle) {
+                map.removeLayer(currentCircle);
+            }
+            const circle = L.circle([parseFloat(lat), parseFloat(lon)], {
+                color: '#e67e22',
+                fillColor: '#f39c12',
+                fillOpacity: 0.25,
+                radius: 1500000,
+                weight: 3,
+                opacity: 0.9
+            }).addTo(map);
+            currentCircle = circle;
+            map.setView([parseFloat(lat), parseFloat(lon)], 3);
+            statusDiv.innerHTML = `✅ ${continentName} | Центр: ${parseFloat(lat).toFixed(3)}, ${parseFloat(lon).toFixed(3)} | Радиус 1500 км`;
+        }
+
+        // Запасные координаты (на случай недоступности API)
+        const fallbackCoords = {
+            asia: { lat: 34.0479, lon: 100.6197 },
+            america: { lat: 39.8283, lon: -98.5795 },
+            europe: { lat: 54.5260, lon: 15.2551 },
+            africa: { lat: 8.7832, lon: 34.5085 }
+        };
+
+        // Функция получения координат через Nominatim API
+        function fetchContinentCoordinates(continentKey, continentDisplayName) {
+            let searchQuery = '';
+            if (continentKey === 'asia') searchQuery = 'Asia continent';
+            else if (continentKey === 'america') searchQuery = 'America continent';
+            else if (continentKey === 'europe') searchQuery = 'Europe continent';
+            else if (continentKey === 'africa') searchQuery = 'Africa continent';
+            
+            const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&format=json&limit=1`;
+            
+            statusDiv.innerHTML = `⏳ Загрузка координат для ${continentDisplayName}... Обращение к API Nominatim...`;
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('HTTP error ' + response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.length > 0 && data[0].lat && data[0].lon) {
+                        addCircleOnMap(data[0].lat, data[0].lon, continentDisplayName);
+                    } else {
+                        const fallback = fallbackCoords[continentKey];
+                        addCircleOnMap(fallback.lat, fallback.lon, `${continentDisplayName} (запасные координаты)`);
+                        statusDiv.innerHTML = `⚠️ ${continentDisplayName} | API не вернул данные, окружность добавлена с запасными координатами.`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    const fallback = fallbackCoords[continentKey];
+                    addCircleOnMap(fallback.lat, fallback.lon, `${continentDisplayName} (офлайн-режим)`);
+                    statusDiv.innerHTML = `🌐 ${continentDisplayName} | API недоступно, окружность отрисована с запасными координатами.`;
+                });
+        }
+
+        // Обработчики для кнопок
+        document.querySelectorAll('.btn-continent').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const continent = btn.getAttribute('data-continent');
+                let displayName = '';
+                if (continent === 'asia') displayName = 'Азия';
+                else if (continent === 'america') displayName = 'Америка';
+                else if (continent === 'europe') displayName = 'Европа';
+                else if (continent === 'africa') displayName = 'Африка';
+                
+                fetchContinentCoordinates(continent, displayName);
+            });
+        });
+
+
+    </script>
 </body>
 </html>
